@@ -40,6 +40,7 @@ new #[Title('イベント一覧')] class extends Component {
         <flux:table>
             <flux:table.columns>
                 <flux:table.column>イベント</flux:table.column>
+                <flux:table.column>詳細</flux:table.column>
                 <flux:table.column>開催日時</flux:table.column>
                 <flux:table.column>会場</flux:table.column>
                 <flux:table.column>主催</flux:table.column>
@@ -49,6 +50,7 @@ new #[Title('イベント一覧')] class extends Component {
                 @foreach ($this->events as $event)
                     <flux:table.row wire:key="event-{{ $event->id }}">
                         <flux:table.cell variant="strong">{{ $event->title }}</flux:table.cell>
+                        <flux:table.cell>{{ Str::limit($event->description, 20) }}</flux:table.cell>
                         <flux:table.cell>{{ $event->starts_at->isoFormat('M月D日(ddd) HH:mm') }} 〜 {{ $event->ends_at->isoFormat('HH:mm') }}</flux:table.cell>
                         <flux:table.cell>{{ $event->venue }}</flux:table.cell>
                         <flux:table.cell>{{ $event->user->name }}</flux:table.cell>
